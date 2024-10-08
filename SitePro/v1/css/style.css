@@ -55,3 +55,16 @@ ul{
 #currentpage{
     text-decoration: underline;
 }
+
+
+/* INTRO */
+
+.hero{
+    display: flex;
+    flex-direction: row;
+    background: url("assets/gradient_1920_1080.png");
+}
+
+.hero__text{
+    width: 40vw;
+}
