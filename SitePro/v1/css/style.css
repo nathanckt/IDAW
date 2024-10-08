@@ -26,6 +26,7 @@ header{
     display: flex;
     flex-direction: column;
     background-color: #000000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 header h1{
@@ -58,13 +59,74 @@ ul{
 
 
 /* INTRO */
+main {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.7), #000000);
+}
+
+
+section{
+    width: 90vw;
+    padding: 0 5vw;
+}
 
 .hero{
     display: flex;
     flex-direction: row;
-    background: url("assets/gradient_1920_1080.png");
+    justify-content: space-between;
+    padding-top: 40px;
+    background-size: cover;
 }
 
 .hero__text{
     width: 40vw;
+}
+
+h2{
+    font-size: 3.5rem;
+}
+
+p{
+    font-size: 1.5rem;
+    font-family:'Courier New', Courier, monospace;
+}
+
+/* FOOTER */
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90vw;
+    padding: 0 5vw;
+}
+
+footer h3{
+    width: 40vw;
+    font-size: 2.5rem;
+    margin-top: 30px;
+}
+
+.footer__menu--title{
+    font-size: 1.5rem;
+    margin-top: 40px;
+}
+
+footer ul{
+    padding: 0;
+}
+
+.footer__menu{
+    width: 20vw;
+}
+
+.contact{
+    width: 30vw;
+}
+
+footer li{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+}
+
+.experience__title{
+    font-size: 2.2rem;
 }
