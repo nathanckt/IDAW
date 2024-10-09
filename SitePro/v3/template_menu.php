@@ -8,28 +8,40 @@
 </nav> -->
 
 <?php
-    function renderMenuToHTML($currentPageId) {
+    function renderMenuToHTML($currentPageId, $lang) {
         // un tableau qui d\'efinit la structure du site
         $mymenu = array(
             // idPage titre
-            'accueil' => array( 'Accueil' ),
-            'cv' => array( 'Cv' ),
-            'projets' => array('Mes Projets'),
-            'contact' => array('Contact')
+            'accueil' => array( 'Accueil','Home' ),
+            'cv' => array( 'Cv','Resume' ),
+            'projets' => array('Mes Projets', "My Projects"),
+            'contact' => array('Contact', 'Contact')
         );
 
         echo "<nav class='menu'>
             <ul>";
 
         foreach ($mymenu as $pageId => $pageTitle) {
-            $title = $pageTitle[0];
+            if($lang === "en"){
+                $title = $pageTitle[1];
+            }
+            else{
+                $title = $pageTitle[0];
+            }
             if($pageId === $currentPageId){
                 $class = 'id="currentpage" ';
             } 
             else {
                 $class = ' ';
             }
-            echo "<li><a href='http://localhost:8888/IDAW/SitePro/v3/index.php?page={$pageId}' $class>$title</a></li>";
+            echo "<li><a href='http://localhost:8888/IDAW/SitePro/v3/index.php?page={$pageId}&lang={$lang}' $class>$title</a></li>";
+        }
+
+        if($lang === "en"){
+            echo "<li><a href='http://localhost:8888/IDAW/SitePro/v3/index.php?page={$currentPageId}&lang=fr' >French</a></li>";
+        }
+        if($lang === "fr"){
+            echo "<li><a href='http://localhost:8888/IDAW/SitePro/v3/index.php?page={$currentPageId}&lang=en' >Anglais</a></li>";
         }
 
         // Fin de la navigation

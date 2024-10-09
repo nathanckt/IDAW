@@ -5,19 +5,23 @@
     if(isset($_GET['page'])) {
     $currentPageId = $_GET['page'];
     }
+    $lang = 'fr';
+    if(isset($_GET['lang'])){
+        $lang = $_GET['lang'];
+    }
 ?>
 
     <header class="bandeau_haut">
     <h1 class="titre">Nathan Crincket</h1>
 
     <?php
-        renderMenuToHTML($currentPageId);
+        renderMenuToHTML($currentPageId, $lang);
     ?>
     </header>
 
     <main>
         <?php
-            $pageToInclude = $currentPageId . ".php";
+            $pageToInclude = $lang ."/". $currentPageId . ".php";
             if(is_readable($pageToInclude))
             require_once($pageToInclude);
             else
