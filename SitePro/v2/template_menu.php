@@ -16,17 +16,23 @@
             'cv' => array( 'Cv' ),
             'projets' => array('Mes Projets')
         );
-        // ...
-        foreach($mymenu as $pageId => $pageParameters) {
-            if($pageId === "index"){
-            echo "<nav class='menu'>
-                <ul>
-                    <li><a href='index.php' class='currrentpage'>Accueil</a></li>
-                    <li><a href='cv.php'>Cv</a></li>
-                    <li><a href='projets.php'>Mes Projets</a></li> 
-                </ul>
-            </nav>"; 
+
+        echo "<nav class='menu'>
+            <ul>";
+
+        foreach ($mymenu as $pageId => $pageTitle) {
+            $title = $pageTitle[0];
+            if($pageId === $currentPageId){
+                $class = 'id="currentpage" ';
+            } 
+            else {
+                $class = ' ';
             }
+            echo "<li><a href='{$pageId}.php' $class>$title</a></li>";
         }
+
+        // Fin de la navigation
+        echo "  </ul>
+            </nav>";
     }
 ?>

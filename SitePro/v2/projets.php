@@ -5,6 +5,7 @@
         <h1>MES PROJETS</h1>
         <?php
             require_once("template_menu.php");
+            renderMenuToHTML('projets');
         ?>
     </header>
     <main>

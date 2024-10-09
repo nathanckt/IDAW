@@ -5,6 +5,7 @@
         <h1>MON CV</h1>
         <?php
             require_once("template_menu.php");
+            renderMenuToHTML('cv');
         ?>
     </header>
     <main>
