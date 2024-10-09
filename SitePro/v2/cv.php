@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Nathan Crincket</title>
-</head>
-<body>
+<?php 
+    require_once("template_header.php");
+?>
     <header>
         <h1>MON CV</h1>
-        <nav class="menu">
-            <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="cv.html" id="currentpage">CV</a></li>
-            <li><a href="projets.html">Projets</a></li>
-            </ul>
-        </nav>
+        <?php
+            require_once("template_menu.php");
+        ?>
     </header>
     <main>
         <section class="intro">
@@ -60,23 +50,6 @@
             </div>
         </section>
     </main>
-    <footer>
-        <h3>Nathan Crincket</h3>
-        <div class="footer__menu">
-            <h4 class="footer__menu--title">Le site</h4>
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="cv.html">CV</a></li>
-                <li><a href="projets.html">Projets</a></li>
-            </ul>
-        </div>
-        <div class="contact">
-            <h4 class="footer__menu--title">Mon contact</h4>
-            <ul>
-                <li><p>06.57.24.31.26</p></li>
-                <li><p>nathan.crincket@etu.imt-nord-europe.fr</p></li>
-            </ul>
-        </div>
-    </footer>
-</body>
-</html>
+<?php
+    require_once("template_footer.php");
+?>
