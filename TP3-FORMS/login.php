@@ -6,7 +6,9 @@
     <title>FORMMMMMMMMMM</title>
 </head>
 <body>
-    
+    <nav>
+        <a href="index.php">page index</a>
+    </nav>
     <form id="login_form" action="connected.php" method="POST">
         <table>
             <tr>

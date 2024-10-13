@@ -6,7 +6,9 @@
     <title>FORMMMMMMMMMM</title>
 </head>
 <body>
-    
+    <nav>
+        <a href="index.php">page index</a>
+    </nav>
     <?php
     // on simule une base de données
     $users = array(
@@ -35,6 +37,8 @@
         if(!$successfullyLogged) {
             echo $errorText;
         } else {
+            session_start();
+            $_SESSION['var'] = $login;
             echo "<h1>Bienvenu ".$login."</h1>";
         }
         ?>

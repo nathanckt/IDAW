@@ -19,6 +19,16 @@
     <title>FORMMMMMMMMMM</title>
 </head>
 <body>
+    <?php 
+        session_start();
+        if(isset($_SESSION['var'])){
+            $login = $_SESSION['var'];
+            echo "<h1>Bienvenu ".$login."</h1>";
+        }
+    ?>
+    <nav>
+        <a href="login.php">page login</a>
+    </nav>
     <form id="style_form" action="index.php" method="POST">
         <select name="css">
             <option value="style1">style1</option>
@@ -26,5 +36,6 @@
         </select>
         <input type="submit" value="Appliquer" />
     </form>
+    <a href="deconnected.php">se déconnecter</a>
 </body>
 </html>
