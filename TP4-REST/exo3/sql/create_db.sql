@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 14 oct. 2024 à 09:00
+-- Généré le : lun. 14 oct. 2024 à 09:48
 -- Version du serveur : 8.0.35
 -- Version de PHP : 8.2.20
 
@@ -41,7 +41,8 @@ INSERT INTO `users` (`id`, `name`, `email`) VALUES
 (1, 'Guilhem', 'guilhem@gmail.com'),
 (3, 'yoda', 'yoda@disney.com'),
 (4, 'luke', 'lukeluke@gmail.com'),
-(7, 'Aline', 'aline@gmail.com');
+(7, 'Aline', 'aline@gmail.com'),
+(8, 'coucou', 'coucou@bonjour.bye');
 
 --
 -- Index pour les tables déchargées
@@ -61,7 +62,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
