@@ -1,5 +1,5 @@
 <?php
-    require_once('config.php');
+    require_once('../config.php');
 
     $connectionString = "mysql:host=". _MYSQL_HOST;
 
@@ -11,9 +11,23 @@
     
     $pdo = NULL;
     try {
-    $pdo = new PDO($connectionString,_MYSQL_USER,_MYSQL_PASSWORD,$options);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo = new PDO($connectionString,_MYSQL_USER,_MYSQL_PASSWORD,$options);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = file_get_contents('sql/create_db.sql'); 
+
+        if ($sql === false) {
+            throw new Exception("Erreur lors de la lecture du fichier SQL.");
+        }
+
+        $pdo->exec($sql);
+        echo "Base de données initialisée avec succès.";
+
     }
     catch (PDOException $erreur) {
-    echo 'Erreur : '.$erreur->getMessage();
+        echo 'Erreur : '.$erreur->getMessage();
     }
+
+    $pdo = null;
+
+?>
