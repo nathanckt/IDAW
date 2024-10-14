@@ -34,14 +34,14 @@
             else {
                 $class = ' ';
             }
-            echo "<li><a href='http://localhost:8888/IDAW/SitePro/v3/index.php?page={$pageId}&lang={$lang}' $class>$title</a></li>";
+            echo "<li><a href='index.php?page={$pageId}&lang={$lang}' $class>$title</a></li>";
         }
 
         if($lang === "en"){
-            echo "<li><a href='http://localhost:8888/IDAW/SitePro/v3/index.php?page={$currentPageId}&lang=fr' >French</a></li>";
+            echo "<li><a href='index.php?page={$currentPageId}&lang=fr' >French</a></li>";
         }
         if($lang === "fr"){
-            echo "<li><a href='http://localhost:8888/IDAW/SitePro/v3/index.php?page={$currentPageId}&lang=en' >Anglais</a></li>";
+            echo "<li><a href='index.php?page={$currentPageId}&lang=en' >Anglais</a></li>";
         }
 
         // Fin de la navigation
