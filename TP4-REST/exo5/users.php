@@ -33,6 +33,19 @@
         return true;
     }
 
+    function update_users($db, $id, $name, $email){
+        $sql = "UPDATE `users` SET `name` = :name, `email` = :mail WHERE `id` = :id";
+
+        $requete = $db->prepare($sql);
+        $requete->execute([
+            ':id' => $id,
+            ':name' => $name,
+            ':mail' => $email
+        ]);
+
+        return['id' => $id, 'name' => $name, 'email' => $email];
+    }
+
     function setHeaders() {
         // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin
         header("Access-Control-Allow-Origin: *");
@@ -98,7 +111,15 @@
                 $name = $data->name;
                 $email = $data->email;
 
-                //$new_user = update_users($pdo, $id, $name, $email);
+                $new_users = update_users($pdo, $id, $name, $email);
+                if($new_users){
+                    setHeaders();
+                    http_response_code(201); 
+                    exit(json_encode($new_users));
+                } else {
+                    http_response_code(500); 
+                    exit(json_encode(['error' => 'Failed to update user']));
+                }
             }
             else{
                 http_response_code(400); 
