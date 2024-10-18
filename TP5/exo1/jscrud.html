@@ -1,60 +1,126 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset='utf-8'>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-<title>tabletest</title>
-<style>
-body{ margin-top: 5em; }
-.table {
-margin-top: 100px;
-margin-bottom: 100px;
-}
-</style>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <title>tabletest</title>
+    <style>
+    body{ margin-top: 5em; }
+    .table {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    }
+    </style>
 </head>
 <body>
-<table class="table">
-<thead>
-<tr>
-<th scope="col">Nom</th>
-<th scope="col">Prenom</th>
-<th scope="col">Date de naissance</th>
-<th scope="col">Aime le cours Web</th>
-<th scope="col">Remarques</th>
-<th scope="col">CRUD</th>
-</tr>
-1
-Luc Fabresse
-luc.fabresse@imt-nord-europe.fr
-CERI Systèmes Numériques
-</thead>
-<tbody id="studentsTableBody">
-</tbody>
-</table>
-<form id="addStudentForm" action="" onsubmit="onFormSubmit();">
-<div class="form-group row">
-<label for="inputNom" class="col-sm-2 col-form-label">Nom*</label>
-<div class="col-sm-3">
-<input type="text" class="form-control" id="inputNom" >
-</div>
-</div>
-...
-<div class="form-group row">
-<span class="col-sm-2"></span>
-<div class="col-sm-2">
-<button type="submit" class="btn btn-primary form-control">Submit</button>
-</div>
-</div>
-</form>
-<script>
-function onFormSubmit() {
-// prevent the form to be sent to the server
-event.preventDefault();
-let nom = $("#inputNom").val();
-$("#studentsTableBody").append(`<tr><td>${nom}</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>`);
-}
-</script>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Date de naissance</th>
+                <th scope="col">Aime le cours Web</th>
+                <th scope="col">Remarques</th>
+                <th scope="col">CRUD</th>
+            </tr>
+        </thead>
+        <tbody id="studentsTableBody">
+
+        </tbody>
+    </table>
+
+    <form id="addStudentForm" action="" onsubmit="onFormSubmit();">
+        <div class="form-group row">
+            <label for="inputNom" class="col-sm-2 col-form-label">Nom*</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputNom" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPrenom" class="col-sm-2 col-form-label">Prenom</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputPrenom" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputDate" class="col-sm-2 col-form-label">Date de naissance</label>
+            <div class="col-sm-3">
+                <input type="date" placeholder="jj/mm/aaaa" partern="\d{2}/\d{2}/\d{4}"class="form-control" id="inputDate" >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputWeb" class="col-sm-2 col-form-label">Adore le cours de Web</label>
+            <input type="checkbox" class="form-control" id="inputWeb" >
+
+        </div>
+        <div class="form-group row">
+            <label for="inputRemarque" class="col-sm-2 col-form-label">Remarques</label>
+            <input type="text-area" class="form-control" id="inputRemarque" >
+        </div>
+        <div class="form-group row">
+            <span class="col-sm-2"></span>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary form-control">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function onFormSubmit() {
+            // prevent the form to be sent to the server
+            event.preventDefault();
+            let nom = $("#inputNom").val();
+            let prenom = $("#inputPrenom").val();
+            let date_naissance = $("#inputDate").val();
+            if($("#inputWeb").is(":checked")){
+                web = "oui";
+            }
+            else {
+                web = "non";
+            }
+            let remarque = $("#inputRemarque").val();
+
+            $("#studentsTableBody").append(`<tr><td>${nom}</td><td>${prenom}</td><td>${date_naissance}</td><td>${web}</td><td>${remarque}</td><td><button class="button__supprimer">supprimer</button></td><td><button class="button__modifier">modifier</button></td></tr>`);
+
+            $("#addStudentForm")[0].reset();
+            }
+
+        $(document).ready(function(){
+            $("#studentsTableBody").on("click", ".button__supprimer", function(){ 
+                $(this).closest("tr").remove(); 
+            });
+
+            $("#studentsTableBody").on("click", ".button__modifier", function(){
+                const row = $(this).closest("tr");
+                const cells = row.find("td");
+
+                cells.each(function(index){
+                    if(index < cells.length - 1){
+                        let cell = $(this).text();
+                        $(this).html(`<input type="text" value="${cell}" class="form-control">`);
+                    }
+                })
+
+                $(this).text("Envoyer").removeClass("button__modifier").addClass("button__envoyer");
+            });
+
+            $("#studentsTableBody").on("click", ".button__envoyer", function(){
+                const row = $(this).closest("tr");
+                const cells = row.find("input");
+
+                let content_html = ``;
+                cells.each(function(index){
+                    if(index < cells.length - 1){
+                        let cell = $(this).val();
+                        content_html = content_html + `<td>${cell}</td>`;
+                    }
+                });
+                content_html = content_html + `<td><button class="button__supprimer">supprimer</button></td><td><button class="button__modifier">modifier</button></td>`;
+                row.html(content_html);
+            })
+        });
+    </script>
+    <script src="jscrud.js"></script>
 </body>
 </html>
-2
