@@ -70,7 +70,7 @@
             
                 $pdo = null;
 
-                echo "Alias: $alias, Name: $nom, Mail $mail <br>";
+                // echo "Alias: $alias, Name: $nom, Mail $mail <br>";
             }
         }
     }

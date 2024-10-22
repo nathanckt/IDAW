@@ -18,15 +18,13 @@
                     $type = $ligne[4];
                     $codeType = "$ligne[1]00";
                 }
-
-
-                try {
+     
+                try{
                     $pdo = new PDO($connectionString,_MYSQL_USER,_MYSQL_PASSWORD,$options);
                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        
                     $sql = "INSERT INTO ALIMENT (ID_ALIMENT, ID_TYPE, LIBELLE_ALIMENT)
                     VALUES (:id, :code, :libelle)";
-
+    
                     $stmt = $pdo->prepare($sql);
                     
                     $stmt->execute([
@@ -38,12 +36,11 @@
                 catch (PDOException $erreur) {
                     echo 'Erreur : '.$erreur->getMessage();
                 }
-            
-                $pdo = null;
-
                 
-                echo "Le code est : $code et la designation est : $designation et le codeType est : $codeType";
-                echo "<br>";
+            //     echo "Le code est : $code et la designation est : $designation et le codeType est : $codeType";
+            //     echo "<br>";
             }
         }
     }
+
+    $pdo = null;
